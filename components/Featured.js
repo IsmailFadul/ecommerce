@@ -14,6 +14,10 @@ const Bg = styled.div`
 const Title = styled.h1`
   margin: 0;
   font-weiht: normal;
+  font-size: 1.5rem;
+    @media screen and (min-width: 768px) {
+    font-size: 3rem;
+    }
 `;
 const Desc = styled.p`
   color: #aaa;
@@ -21,10 +25,25 @@ const Desc = styled.p`
 `;
 const ColumnWrapper = styled.div`
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1fr;
   gap: 40px;
   img {
     max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 0 auto;
+  }
+  div:nth-child(1) {
+    order: 2;
+  }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 0.9fr 1.1fr;
+    div:nth-child(1) {
+      order: 0;
+    }
+    img {
+      max-width: 100%;
+    }
   }
 `;
 const ButtonWrapper = styled.div`
@@ -36,7 +55,7 @@ const Column = styled.div`
   align-items: center;
 `;
 export default function Featured({ product }) {
-  const {addProduct} = useContext(CartContext);
+  const { addProduct } = useContext(CartContext);
   function addFeaturedToCart() {
     addProduct(product._id);
   }
@@ -49,12 +68,16 @@ export default function Featured({ product }) {
               <Title>{product.title}</Title>
               <Desc>{product.description}</Desc>
               <ButtonWrapper>
-                <ButtonLink 
-                white={1} outline={1} href={"/prodcuts/"+product._id}>
+                <ButtonLink
+                  white={1}
+                  outline={1}
+                  href={"/prodcut/" + product._id}
+                >
                   Read more
                 </ButtonLink>
-                <Button onClick={addFeaturedToCart} white
-                >Add to the cart</Button>
+                <Button onClick={addFeaturedToCart} white>
+                  Add to the cart
+                </Button>
               </ButtonWrapper>
             </div>
           </Column>

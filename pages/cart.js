@@ -10,7 +10,10 @@ import styled from "styled-components";
 
 const ColumnWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
   gap: 40px;
   margin-top: 40px;
 `;
@@ -26,22 +29,36 @@ const ProductInfoCell = styled.td`
 `;
 
 const ProductImageBox = styled.div`
-  max-width: 100px;
+  max-width: 60px;
   max-height: 100px;
-  padding: 10px;
+  padding: 2px;
   border: 0.2rem solid rgba(0, 0, 0, 0.3);
   display: flex;
   aling-items: center;
   justify-content: center;
   border-radius: 10px;
   img {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 10px;
+     max-width: 100px;
+  max-height: 100px;
+    img {
     max-width: 80px;
     max-height: 80px;
+  }
   }
 `;
 
 const QuantityLabel = styled.span`
-  padding: 0 5px;
+  padding: 0 15px;
+  display: block;
+      @media screen and (min-width: 768px) {
+      display: inline-block;
+      padding: 0 10px;
+      }
 `;
 export default function CartPage() {
   const { cartProducts, addProduct, removeProduct, clearCart } =
@@ -78,7 +95,7 @@ export default function CartPage() {
     total += price;
   }
   async function goToPayment() {
-    const response = await axios.post("/api/checkout", {
+    const response = await axios.post("/api/checkout/", {
       name,
       email,
       city,

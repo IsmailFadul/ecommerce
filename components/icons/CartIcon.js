@@ -1,4 +1,4 @@
-export default function CartIcon() {
+export default function CartIcon({className="h-6 w-6"}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,7 +6,7 @@ export default function CartIcon() {
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="currentColor"
-      class="h-5 w-5"
+      class={className}
     >
       <path
         stroke-linecap="round"
